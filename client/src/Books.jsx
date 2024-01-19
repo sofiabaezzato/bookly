@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLoaderData, useNavigation, useNavigate } from 'react-router-dom'
+import { useLoaderData, useNavigation, useNavigate, Link } from 'react-router-dom'
 
 const Books = () => {
   const books = useLoaderData()
@@ -33,9 +33,15 @@ const Books = () => {
               <p>Title: {book.title}</p>
               <p>Author: {book.author}</p>
             </div>
-            <button onClick={() => handleDelete(book.id)}
-              className='px-2 py-1 bg-yellow-400 rounded-md'
-            >Delete</button>
+            <div>
+              <Link to={`/update/${book.id}`}
+                className='px-2 py-1 text-gray-800 text-xs'
+              >Update</Link>
+              <button onClick={() => handleDelete(book.id)}
+                className='px-2 py-1 bg-yellow-400 rounded-md'
+              >Delete</button>
+              
+            </div>
           </li>
         ))}
       </ul>

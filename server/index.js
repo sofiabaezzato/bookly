@@ -29,6 +29,16 @@ app.get('/books', (req, res) => {
   })
 })
 
+app.get('/books/:id', (req, res) => {
+  const id = req.params.id
+  const query = "SELECT * FROM books WHERE id = ?"
+  
+  db.query(query, [id], (err, data) => {
+    if (err) return res.status(400).send(err)
+    return res.json(data)
+  })
+})
+
 app.post('/books', (req, res) => {
   const query = "INSERT INTO books (`title`, `author`, `desc`, `cover`) VALUES (?)"
   const values = [
@@ -51,6 +61,22 @@ app.delete('/books/:id', (req, res) => {
   db.query(query, [id], (err, data) => {
     if (err) return res.status(400).send(err)
     return res.json(`Book ${id} deleted.`)
+  })
+})
+
+app.put('/books/:id', (req, res) => {
+  const id = req.params.id
+  const query = "UPDATE books SET `title`= ?, `author` = ?, `desc` = ?, `cover` = ? WHERE id = ?"
+  const values = [
+    req.body.title,
+    req.body.author,
+    req.body.desc,
+    req.body.cover,
+  ]
+
+  db.query(query, [...values, id], (err,data) => {
+    if (err) return res.status(400).send(err)
+    return res.json(`Book ${id} updateded.`)
   })
 })
 
