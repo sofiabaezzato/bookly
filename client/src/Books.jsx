@@ -24,13 +24,18 @@ const Books = () => {
   }
 
   return (
-    <section>
-      <h1>Books</h1>
+    <section className='flex flex-col justify-center items-center'>
+      <h1 className='font-bold text-lg mb-4'>Books</h1>
       <ul className='list-none'>
         {books.map(book => (
-          <li key={book.id} className='mb-2'>
-            Title: {book.title}, Author: {book.author}
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
+          <li key={book.id} className='mb-2 p-2 border border-gray-500 flex justify-between items-center gap-4 rounded-lg'>
+            <div className="">
+              <p>Title: {book.title}</p>
+              <p>Author: {book.author}</p>
+            </div>
+            <button onClick={() => handleDelete(book.id)}
+              className='px-2 py-1 bg-yellow-400 rounded-md'
+            >Delete</button>
           </li>
         ))}
       </ul>

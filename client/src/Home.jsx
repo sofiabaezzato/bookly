@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <h1
-      className='text-black'
+      className='font-bold text-lg mb-4'
     >Home</h1>
   )
 }
